@@ -182,3 +182,82 @@
     border-right-color: var(--border);
   }
 }
+
+/* Root Variables for consistency */
+:root {
+  --cyan: #22d3ee;
+  --cyan-rgb: 34, 211, 238;
+  --purple: #a855f7;
+  --muted: #94a3b8;
+  --bg-dark: #0f172a;
+}
+
+/* Entrance Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating Effect for Image */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Glowing Pulse Effect */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(var(--cyan-rgb), 0.3); }
+  50% { box-shadow: 0 0 40px rgba(var(--cyan-rgb), 0.6); }
+}
+
+.animate-profile {
+  opacity: 0;
+  animation: 
+    fadeInUp 0.8s ease-out forwards, 
+    float 4s ease-in-out infinite 0.8s,
+    glowPulse 3s ease-in-out infinite;
+}
+
+.animate-name {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards 0.4s;
+}
+
+/* Modern Button Styles */
+.btn-primary {
+  padding: 12px 28px;
+  background: var(--cyan);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(34, 211, 238, 0.3);
+}
+
+.btn-secondary {
+  padding: 12px 28px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #fff;
+}

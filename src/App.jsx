@@ -36,7 +36,7 @@ const SERVICES = [
   { icon: "⬟", title: "Code Reviews", desc: "Thorough pull request reviews, refactoring advice, and best-practice guidance for your team." },
   { icon: "◆", title: "Freelance Dev", desc: "End-to-end freelance projects from wireframe to live deployment with ongoing support." },
 ];
-
+import profileImg from "./assets/profile.jpg";
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
@@ -296,25 +296,127 @@ export default function Portfolio() {
         {NAV_LINKS.map((l) => <a key={l} onClick={() => scrollTo(l)}>{l}</a>)}
       </div>
 
-      {/* HOME */}
-      <section id="home">
-        <div style={{ maxWidth: 760 }}>
-          <div className="badge"><span className="dot" /> available for projects &amp; opportunities</div>
-          <div className="pre"><span style={{ color: "var(--muted)" }}>// </span>Hello, World! — I'm</div>
-          <h1 className="hn">Wren Montero Javier</h1>
-          <p className="hr"><TypeWriter words={["Web Developer.", "Frontend Engineer.", "UI Craftsman.", "Code & Coffee ☕"]} /></p>
-          <p className="hd">I build clean, fast, and accessible websites and web apps. Passionate about great code, pixel-perfect UIs, and shipping products that users actually love.</p>
-          <div className="hbtns">
-            <button className="btn-p" onClick={() => scrollTo("Portfolio")}>View Projects →</button>
-            <button className="btn-g" onClick={() => scrollTo("Contact")}>Contact Me</button>
-          </div>
-          <div className="stats">
-            {[{ v: "3+", l: "Years Coding" }, { v: "20+", l: "Projects Built" }, { v: "10k+", l: "Lines of Code" }].map((s) => (
-              <div key={s.l}><div className="sv">{s.v}</div><div className="sl">{s.l}</div></div>
-            ))}
-          </div>
+<section id="home" style={{ padding: "100px 20px", background: "var(--bg-dark)", minHeight: "90vh", display: "flex", alignItems: "center" }}>
+      <div style={{ 
+        maxWidth: "800px", 
+        margin: "0 auto", 
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "1.5rem" 
+      }}>
+
+        {/* PROFILE IMAGE */}
+        <div className="animate-profile" style={{
+          position: "relative",
+          width: "170px",
+          height: "170px",
+          borderRadius: "50%",
+          padding: "5px",
+          background: "linear-gradient(135deg, var(--cyan), var(--purple))",
+          marginBottom: "1rem"
+        }}>
+          <img
+            src={profileImg} // Ensure profileImg is imported
+            alt="Wren Montero Javier"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderRadius: "50%",
+              border: "4px solid var(--bg-dark)",
+              background: "#111"
+            }}
+          />
         </div>
-      </section>
+
+        {/* STATUS BADGE */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          padding: "6px 16px",
+          borderRadius: "20px",
+          background: "rgba(255, 255, 255, 0.03)",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          fontSize: "0.8rem",
+          color: "var(--cyan)",
+          fontWeight: "600",
+          letterSpacing: "1px",
+          textTransform: "uppercase"
+        }}>
+          <span style={{ 
+            width: "8px", height: "8px", borderRadius: "50%", background: "#10b981", boxShadow: "0 0 10px #10b981" 
+          }} /> 
+          Available for opportunities
+        </div>
+
+        {/* HERO TEXT */}
+        <header>
+          <div style={{ color: "var(--muted)", fontFamily: "monospace", fontSize: "1.1rem", marginBottom: "0.5rem" }}>
+            <span>//</span> Hello, I'm
+          </div>
+          <h1 className="animate-name" style={{ 
+            fontSize: "clamp(2.5rem, 8vw, 4.5rem)", 
+            fontWeight: "800", 
+            lineHeight: "1.1",
+            color: "#fff",
+            marginBottom: "1rem",
+            letterSpacing: "-1px"
+          }}>
+            Wren Montero Javier
+          </h1>
+          <div style={{ fontSize: "1.5rem", fontWeight: "500", color: "var(--purple)", minHeight: "1.6em" }}>
+            <TypeWriter words={["Frontend Developer", "Backend Developer", "Mobile App Developer"]} />
+          </div>
+        </header>
+
+        {/* DESCRIPTION */}
+        <p style={{ 
+          maxWidth: "580px", 
+          fontSize: "1.15rem", 
+          lineHeight: "1.7", 
+          color: "var(--muted)",
+          marginBottom: "2rem" 
+        }}>
+          I build high-performance, visually stunning digital experiences. Specializing in 
+          <span style={{ color: "#fff" }}> modern web technologies</span> and scalable architecture.
+        </p>
+
+        {/* CALL TO ACTION */}
+        <div style={{ display: "flex", gap: "15px", flexWrap: "wrap", justifyContent: "center" }}>
+          <button className="btn-primary" onClick={() => scrollTo("Portfolio")}>
+            View Work
+          </button>
+          <button className="btn-secondary" onClick={() => scrollTo("Contact")}>
+            Contact Me
+          </button>
+        </div>
+
+        {/* STATS BAR */}
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(3, 1fr)", 
+          gap: "2rem", 
+          marginTop: "4rem",
+          paddingTop: "2.5rem",
+          borderTop: "1px solid rgba(255, 255, 255, 0.05)",
+          width: "100%"
+        }}>
+          {[
+            { v: "3+", l: "Years Exp." },
+            { v: "20+", l: "Projects" },
+            { v: "10k+", l: "Commits" }
+          ].map((s) => (
+            <div key={s.l} style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "1.8rem", fontWeight: "700", color: "#fff" }}>{s.v}</div>
+              <div style={{ fontSize: "0.75rem", color: "var(--muted)", textTransform: "uppercase", fontWeight: "600" }}>{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
       {/* ABOUT */}
       <section id="about">

@@ -1,0 +1,15 @@
+export const TECH_STACK: string[] = [
+  "React",
+  "React Native",
+  "Next.js",
+  "JavaScript",
+  "TypeScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Nest.js",
+  "Supabase",
+  "PostgreSQL",
+  "Git",
+  "Figma",
+  "Docker",
+];

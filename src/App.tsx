@@ -194,7 +194,7 @@ export default function Portfolio() {
             {[
               { v: "1+", l: "Years Exp." },
               { v: "20+", l: "Projects" },
-              { v: "150+", l: "Commits" },
+              { v: "50+", l: "Commits" },
             ].map((s) => (
               <div key={s.l}>
                 <div className="stat-value">{s.v}</div>

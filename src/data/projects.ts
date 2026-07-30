@@ -7,20 +7,20 @@ import profiberImg from "../assets/project/profiber.png";
 import screenshotImg from "../assets/project/Screenshot 2026-06-29 080042.png";
 
 export const PROJECTS: Project[] = [
-{
-  title: "POS & Inventory Management System",
-  tag: "Desktop Application",
-  desc: "A desktop-based Point of Sale and Inventory Management System developed in Java using NetBeans with Microsoft Access as the database. The system streamlines sales transactions, inventory tracking, product management, customer records, supplier management, and sales reporting through an intuitive and user-friendly interface.",
-  tech: ["Java", "NetBeans", "Java Swing", "MS Access", "JDBC"],
-  color: "#00ffe1",
-  loc: "15k",
-  commits: 156,
-  image: inventoryImg,
-  links: {
-    demo: "#",
-    repo: "https://github.com/your-username/pos-inventory-management"
+  {
+    title: "POS & Inventory Management System",
+    tag: "Desktop Application",
+    desc: "A desktop-based Point of Sale and Inventory Management System developed in Java using NetBeans with Microsoft Access as the database. The system streamlines sales transactions, inventory tracking, product management, customer records, supplier management, and sales reporting.",
+    tech: ["Java", "NetBeans", "Java Swing", "MS Access", "JDBC"],
+    color: "#00ffe1",
+    loc: "15k",
+    commits: 156,
+    image: inventoryImg,
+    links: {
+      demo: "#",
+      repo: "#",
+    },
   },
-},
   {
     title: "ClanHub",
     tag: "Web App",
@@ -30,39 +30,51 @@ export const PROJECTS: Project[] = [
     loc: "6.8k",
     commits: 132,
     image: clansImg,
-    links: { demo: "#", repo: "https://github.com/your-username/clanhub" },
+    links: {
+      demo: "https://clans-web.vercel.app/",
+      repo: "#",
+    },
   },
   {
     title: "DermaCare Clinic",
     tag: "Web App",
-    desc: "Full-featured dermatology clinic management system with appointment booking, patient records, prescription management, and telehealth integration.",
-    tech: ["Next.js", "PostgreSQL", "Tailwind", "Prisma"],
+    desc: "A dermatology clinic management system with appointment booking, patient records, prescription management, and telehealth integration.",
+    tech: ["Next.js", "PostgreSQL", "Tailwind CSS", "Prisma"],
     color: "#a259ff",
     loc: "2.1k",
     commits: 54,
     image: dermaImg,
-    links: { demo: "#", repo: "https://github.com/your-username/dermacare" },
+    links: {
+      demo: "https://clinic-derma.vercel.app/",
+      repo: "#", 
+    },
   },
   {
     title: "ProFiber ISP",
     tag: "Web App",
-    desc: "Internet service provider customer portal with plan comparison, service requests, billing dashboard, and network status monitoring.",
+    desc: "An ISP customer portal with plan comparison, service requests, billing dashboard, and network status monitoring.",
     tech: ["Vue.js", "Express", "Redis", "Docker"],
     color: "#ffd60a",
     loc: "1.4k",
     commits: 38,
     image: profiberImg,
-    links: { demo: "#", repo: "https://github.com/your-username/profiber" },
+    links: {
+      demo: "https://pro-fiber-59bl.vercel.app/",
+      repo: "#", // Replace with GitHub repo if public
+    },
   },
   {
     title: "TaskFlow",
     tag: "SaaS MVP",
-    desc: "Kanban-style project management tool with drag-and-drop, real-time collaboration via WebSockets, and team workspaces.",
+    desc: "A Kanban-style project management application featuring drag-and-drop functionality, real-time collaboration, and team workspaces.",
     tech: ["React", "Socket.io", "PostgreSQL", "JWT"],
     color: "#00ffe1",
     loc: "8.3k",
     commits: 201,
     image: screenshotImg,
-    links: { demo: "#", repo: "https://github.com/your-username/taskflow" },
+    links: {
+      demo: "#",
+      repo: "#", // Replace with GitHub repo if available
+    },
   },
 ];

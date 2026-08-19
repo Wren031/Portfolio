@@ -22,6 +22,8 @@ const HERO_IMAGES = [
   { src: "/images/grad.JPG", alt: "Wren Montero Javier at graduation" },
 ];
 
+const sectionId = (label: string) => label.toLowerCase().replace(/_/g, "-");
+
 export default function Portfolio() {
   const [active, setActive] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,12 +64,14 @@ export default function Portfolio() {
   }, []);
 
   useEffect(() => {
-    const sections = NAV_LINKS.map((l) => document.getElementById(l.toLowerCase()));
+    const sections = NAV_LINKS.map((l) => document.getElementById(sectionId(l)));
     const obs = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
-          if (e.isIntersecting)
-            setActive(e.target.id.charAt(0).toUpperCase() + e.target.id.slice(1));
+          if (e.isIntersecting) {
+            const link = NAV_LINKS.find((label) => sectionId(label) === e.target.id);
+            if (link) setActive(link);
+          }
         }),
       { threshold: 0.3 }
     );
@@ -76,7 +80,7 @@ export default function Portfolio() {
   }, []);
 
   const scrollTo = (id: string) => {
-    document.getElementById(id.toLowerCase())?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(sectionId(id))?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
 

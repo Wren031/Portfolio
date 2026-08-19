@@ -4,6 +4,7 @@ export const NAV_LINKS: string[] = [
   "Experience",
   "Portfolio",
   "Skills",
+  "github_activity",
   "Services",
   "Contact",
 ];

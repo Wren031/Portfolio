@@ -12,21 +12,14 @@ import {
 
 import AnimSection from "./components/AnimSection";
 import SkillBar from "./components/SkillBar";
-import TypeWriter from "./components/TypeWriter";
 import ChatBot from "./components/ChatBot";
 import GitHubActivity from "./components/GitHubActivity";
 
-import profileImg from "./assets/profile.jpg";
-import img0887 from "./assets/IMG_0887.jpeg";
-import heroImg from "./assets/hero.png";
+import myImage from "./assets/my_image.jpeg";
 
 const HERO_IMAGES = [
-  { src: profileImg, alt: "Wren Montero Javier" },
-  { src: img0887, alt: "Wren Montero Javier" },
-  { src: heroImg, alt: "Wren Montero Javier" },
-  { src: "/images/3R-85.jpg", alt: "Wren Montero Javier" },
-  { src: "/images/3R-..35.JPG", alt: "Wren Montero Javier" },
-  { src: "/images/3r,-35.jpg", alt: "Wren Montero Javier" },
+  { src: myImage, alt: "Portrait of Wren Montero Javier" },
+  { src: "/images/grad.JPG", alt: "Wren Montero Javier at graduation" },
 ];
 
 export default function Portfolio() {
@@ -159,43 +152,37 @@ export default function Portfolio() {
       {/* HERO */}
       <section id="home">
         <div className="hero-left">
-          <div className="hero-badge">
-            <span className="hero-badge-dot" />
-            Available for opportunities
+          <div className="hero-kicker">
+            <span className="hero-kicker-line" />
+            <span>Full-stack developer · Philippines</span>
           </div>
 
-          <div className="hero-greeting">Hi, I'm</div>
-
-          <h1 className="hero-name">Wren Montero Javier</h1>
+          <h1 className="hero-name">Hi, I'm Wren Montero Javier.</h1>
 
           <div className="hero-role">
-            <TypeWriter words={["Full-Stack Developer"]} />
+            Web and mobile development with React, TypeScript, and Node.js.
           </div>
 
           <p className="hero-desc">
-            I build practical web and mobile products with React, TypeScript,
-            Node.js, and modern database tools.
+            I build practical digital products with clear interfaces, reliable
+            architecture, and attention to the details that make software easy to use.
           </p>
 
           <div className="hero-btns">
             <button className="btn-primary" onClick={() => scrollTo("Portfolio")}>
               View Projects
             </button>
-                <a
-                  className="btn-secondary"
-                  href="/resume.docx"
-                  download="resume.docx"
-                >
-                  Download Resume
-                </a>
-                <button className="btn-secondary" onClick={() => scrollTo("Contact")}>
+            <a className="btn-secondary" href="/resume.docx" download="Wren-Montero-Javier-Resume.docx">
+              Download Resume
+            </a>
+            <button className="btn-secondary" onClick={() => scrollTo("Contact")}>
               Contact Me
             </button>
           </div>
 
           <div className="hero-social">
             <a href="https://github.com/Wren031" target="_blank" rel="noreferrer noopener">GitHub</a>
-            <a href="https://www.facebook.com/PringPring25" target="_blank" rel="noreferrer noopener">Facebook</a>
+            <a href="/resume.docx" download="resume.docx">Resume</a>
             <a href="mailto:javierrenren1@gmail.com">Email</a>
           </div>
 

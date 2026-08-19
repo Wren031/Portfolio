@@ -12,11 +12,8 @@ export default function AnimSection({ children, delay = 0 }: Props) {
   return (
     <div
       ref={ref}
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(36px)",
-        transition: `opacity 0.75s ease ${delay}s, transform 0.75s ease ${delay}s`,
-      }}
+      className={`reveal ${inView ? "is-visible" : ""}`}
+      style={{ "--reveal-delay": `${delay}s` } as React.CSSProperties}
     >
       {children}
     </div>

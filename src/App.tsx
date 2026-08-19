@@ -14,8 +14,20 @@ import AnimSection from "./components/AnimSection";
 import SkillBar from "./components/SkillBar";
 import TypeWriter from "./components/TypeWriter";
 import ChatBot from "./components/ChatBot";
+import GitHubActivity from "./components/GitHubActivity";
 
 import profileImg from "./assets/profile.jpg";
+import img0887 from "./assets/IMG_0887.jpeg";
+import heroImg from "./assets/hero.png";
+
+const HERO_IMAGES = [
+  { src: profileImg, alt: "Wren Montero Javier" },
+  { src: img0887, alt: "Wren Montero Javier" },
+  { src: heroImg, alt: "Wren Montero Javier" },
+  { src: "/images/3R-85.jpg", alt: "Wren Montero Javier" },
+  { src: "/images/3R-..35.JPG", alt: "Wren Montero Javier" },
+  { src: "/images/3r,-35.jpg", alt: "Wren Montero Javier" },
+];
 
 export default function Portfolio() {
   const [active, setActive] = useState("Home");
@@ -26,6 +38,8 @@ export default function Portfolio() {
   const [error, setError] = useState("");
   const [filter, setFilter] = useState("All");
   const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "dark");
+  const [heroImage, setHeroImage] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -33,6 +47,20 @@ export default function Portfolio() {
   }, [theme]);
 
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
+
+  useEffect(() => {
+    if (carouselPaused) return;
+
+    const timer = window.setInterval(() => {
+      setHeroImage((current) => (current + 1) % HERO_IMAGES.length);
+    }, 4500);
+
+    return () => window.clearInterval(timer);
+  }, [carouselPaused]);
+
+  const changeHeroImage = (direction: number) => {
+    setHeroImage((current) => (current + direction + HERO_IMAGES.length) % HERO_IMAGES.length);
+  };
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 60);
@@ -98,16 +126,12 @@ export default function Portfolio() {
             </li>
           ))}
         </ul>
-        <button className="nav-cta" onClick={() => scrollTo("Contact")}>
-          <span className="nav-cta-icon" onClick={(e) => { e.stopPropagation(); toggleTheme(); }} title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}>
-            {theme === "dark" ? (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            ) : (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            )}
-          </span>
-          Let's Talk
-        </button>
+        <div className="nav-actions">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}>
+            {theme === "dark" ? "Light" : "Dark"}
+          </button>
+          <button className="nav-cta" onClick={() => scrollTo("Contact")}>Let's Talk</button>
+        </div>
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -126,19 +150,14 @@ export default function Portfolio() {
           </a>
         ))}
         <div className="mm-footer">
-          <a href="https://github.com/your-username" target="_blank" rel="noreferrer noopener" title="GitHub">GH</a>
-          <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noreferrer noopener" title="LinkedIn">LI</a>
-          <a href="https://twitter.com/your-handle" target="_blank" rel="noreferrer noopener" title="Twitter">X</a>
-          <a href="mailto:javierrenren1@gmail.com" title="Email">@</a>
+          <a href="https://github.com/Wren031" target="_blank" rel="noreferrer noopener">GitHub</a>
+          <a href="https://www.facebook.com/PringPring25" target="_blank" rel="noreferrer noopener">Facebook</a>
+          <a href="mailto:javierrenren1@gmail.com">Email</a>
         </div>
       </div>
 
       {/* HERO */}
       <section id="home">
-        <div className="hero-orb hero-orb-1" />
-        <div className="hero-orb hero-orb-2" />
-        <div className="hero-orb hero-orb-3" />
-
         <div className="hero-left">
           <div className="hero-badge">
             <span className="hero-badge-dot" />
@@ -154,8 +173,8 @@ export default function Portfolio() {
           </div>
 
           <p className="hero-desc">
-            I build high-performance, visually stunning digital experiences.
-            Specializing in modern web technologies and scalable architecture.
+            I build practical web and mobile products with React, TypeScript,
+            Node.js, and modern database tools.
           </p>
 
           <div className="hero-btns">
@@ -175,38 +194,66 @@ export default function Portfolio() {
           </div>
 
           <div className="hero-social">
-            <a href="https://github.com/your-username" target="_blank" rel="noreferrer noopener" title="GitHub">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            </a>
-            
-            <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noreferrer noopener" title="LinkedIn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="https://twitter.com/your-handle" target="_blank" rel="noreferrer noopener" title="Twitter / X">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="https://mail.google.com/mail/u/0/#inbox" title="Email">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </a>
+            <a href="https://github.com/Wren031" target="_blank" rel="noreferrer noopener">GitHub</a>
+            <a href="https://www.facebook.com/PringPring25" target="_blank" rel="noreferrer noopener">Facebook</a>
+            <a href="mailto:javierrenren1@gmail.com">Email</a>
           </div>
 
           <div className="hero-stats">
             {[
               { v: "1+", l: "Years Exp." },
               { v: "20+", l: "Projects" },
-              { v: "50+", l: "Commits" },
+              { v: "142", l: "GitHub Contributions · 2026", href: "https://github.com/Wren031" },
             ].map((s) => (
-              <div key={s.l}>
-                <div className="stat-value">{s.v}</div>
-                <div className="stat-label">{s.l}</div>
-              </div>
+              s.href ? (
+                <a className="stat-link" key={s.l} href={s.href} target="_blank" rel="noreferrer noopener">
+                  <div className="stat-value">{s.v}</div>
+                  <div className="stat-label">{s.l}</div>
+                </a>
+              ) : (
+                <div key={s.l}>
+                  <div className="stat-value">{s.v}</div>
+                  <div className="stat-label">{s.l}</div>
+                </div>
+              )
             ))}
           </div>
         </div>
 
         <div className="hero-right">
-          <div className="profile-wrapper">
-            <img src={profileImg} alt="Wren Montero Javier" />
+          <div
+            className="profile-wrapper"
+            onMouseEnter={() => setCarouselPaused(true)}
+            onMouseLeave={() => setCarouselPaused(false)}
+            onFocus={() => setCarouselPaused(true)}
+            onBlur={() => setCarouselPaused(false)}
+          >
+            {HERO_IMAGES.map((image, index) => (
+              <img
+                key={image.src}
+                className={index === heroImage ? "active" : ""}
+                src={image.src}
+                alt={image.alt}
+                aria-hidden={index !== heroImage}
+              />
+            ))}
+            <div className="carousel-controls" aria-label="Hero image controls">
+              <button type="button" onClick={() => changeHeroImage(-1)} aria-label="Previous image">Previous</button>
+              <span>{String(heroImage + 1).padStart(2, "0")} / {String(HERO_IMAGES.length).padStart(2, "0")}</span>
+              <button type="button" onClick={() => changeHeroImage(1)} aria-label="Next image">Next</button>
+            </div>
+            <div className="carousel-dots" aria-label="Choose hero image">
+              {HERO_IMAGES.map((image, index) => (
+                <button
+                  type="button"
+                  key={`dot-${image.src}`}
+                  className={index === heroImage ? "active" : ""}
+                  onClick={() => setHeroImage(index)}
+                  aria-label={`Show image ${index + 1}`}
+                  aria-pressed={index === heroImage}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -318,7 +365,7 @@ export default function Portfolio() {
             <div className="section-label">projects</div>
             <h2>Things I've Built</h2>
             <p className="section-sub">
-              Real projects with real code. Hover any card to explore.
+              Selected work across web, mobile, and desktop development.
             </p>
             <div className="filter-bar">
               {tags.map((t) => (
@@ -362,6 +409,9 @@ export default function Portfolio() {
                   )}
                   <div className="project-title">{p.title}</div>
                   <div className="project-desc">{p.desc}</div>
+                  <ul className="project-features">
+                    {p.features.map((feature) => <li key={feature}>{feature}</li>)}
+                  </ul>
                   <div className="project-techs">
                     {p.tech.map((t) => (
                       <span key={t} className="project-chip">{t}</span>
@@ -379,14 +429,14 @@ export default function Portfolio() {
                           ↗ Live Demo
                         </a>
                       )}
-                      {p.links?.repo && (
+                      {p.links?.repo && p.links.repo !== "#" && (
                         <a
                           className="project-link"
                           href={p.links.repo}
                           target="_blank"
                           rel="noreferrer noopener"
                         >
-                          ⟨/⟩ Source
+                          GitHub
                         </a>
                       )}
                     </div>
@@ -425,6 +475,8 @@ export default function Portfolio() {
         </div>
       </section>
 
+      <GitHubActivity />
+
       {/* SERVICES */}
       <section id="services">
         <div className="si">
@@ -439,7 +491,6 @@ export default function Portfolio() {
             {SERVICES.map((s, i) => (
               <AnimSection key={s.title} delay={i * 0.08}>
                 <div className="service-card">
-                  <span className="service-icon">{s.icon}</span>
                   <div className="service-title">{s.title}</div>
                   <div className="service-desc">{s.desc}</div>
                 </div>
@@ -463,13 +514,12 @@ export default function Portfolio() {
             <AnimSection>
               <div>
                 {[
-                  { icon: "✉", label: "Email", value: "javierrenren1@gmail.com" },
-                  { icon: "📍", label: "Based In", value: "Philippines" },
-                  { icon: "🟢", label: "Status", value: "Available for Work" },
-                  { icon: "⏱", label: "Response Time", value: "Within 24 hours" },
+                  { label: "Email", value: "javierrenren1@gmail.com" },
+                  { label: "Based In", value: "Philippines" },
+                  { label: "Status", value: "Available for Work" },
+                  { label: "Response Time", value: "Within 24 hours" },
                 ].map((c, i) => (
                   <div className="contact-info-item" key={c.label} style={{ animationDelay: `${i * 0.1}s` }}>
-                    <div className="contact-icon-box">{c.icon}</div>
                     <div>
                       <div className="contact-label">{c.label}</div>
                       <div className="contact-value">{c.value}</div>
@@ -500,25 +550,7 @@ export default function Portfolio() {
 
                     <a
                       className="contact-social-link"
-                      href="https://linkedin.com/in/your-profile"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      LinkedIn
-                    </a>
-
-                    <a
-                      className="contact-social-link"
-                      href="https://twitter.com/your-handle"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      Twitter / X
-                    </a>
-
-                    <a
-                      className="contact-social-link"
-                      href="mailto:your-email@gmail.com"
+                      href="mailto:javierrenren1@gmail.com"
                     >
                       Email
                     </a>

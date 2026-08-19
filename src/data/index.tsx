@@ -44,10 +44,10 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 ];
 
 export const SERVICES: Service[] = [
-  { icon: "⬡", title: "Landing Pages", desc: "Fast, pixel-perfect landing pages optimised for conversions and Core Web Vitals." },
-  { icon: "◈", title: "Web Apps", desc: "Full-featured SPAs and PWAs built with React, Vue, or vanilla JS — clean and maintainable." },
-  { icon: "⬢", title: "API Development", desc: "RESTful and GraphQL APIs with auth, rate-limiting, and full documentation." },
-  { icon: "◉", title: "Performance Audits", desc: "Lighthouse deep-dives, bundle analysis, and actionable improvements to speed up your site." },
-  { icon: "⬟", title: "Code Reviews", desc: "Thorough pull request reviews, refactoring advice, and best-practice guidance for your team." },
-  { icon: "◆", title: "Freelance Dev", desc: "End-to-end freelance projects from wireframe to live deployment with ongoing support." },
+  { title: "Landing Pages", desc: "Fast, responsive landing pages optimized for accessibility and Core Web Vitals." },
+  { title: "Web Applications", desc: "Maintainable web applications built around clear user flows and reliable data." },
+  { title: "API Development", desc: "Structured REST APIs with authentication, validation, and practical documentation." },
+  { title: "Performance Audits", desc: "Focused reviews of loading, rendering, and bundle performance with actionable fixes." },
+  { title: "Code Reviews", desc: "Practical code reviews that improve readability, reliability, and long-term maintenance." },
+  { title: "Full-Stack Delivery", desc: "End-to-end implementation from interface planning through deployment and support." },
 ];

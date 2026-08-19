@@ -25,6 +25,7 @@ export interface Project {
   tag: string;
   desc: string;
   tech: string[];
+  features: string[];
   color: string;
   loc: string;
   commits: number;
@@ -33,7 +34,6 @@ export interface Project {
 }
 
 export interface Service {
-  icon: string;
   title: string;
   desc: string;
 }
